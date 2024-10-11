@@ -1,0 +1,198 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-button (click)="goToHome()">Back</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1>Página de Perfiles</h1>
+
+  <!--******** Comienza el Contenido de la tarjeta ********-->
+  <ion-card *ngFor="let user of users">
+    <ion-card-header>
+      <ion-card-title>{{ user.name }} {{ user.surname1 }}</ion-card-title>
+      <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Dirección: {{ user.address }}</p>
+      <p>Teléfono: {{ user.phone }}</p>
+    </ion-card-content>
+
+    <!-- Botones de acción dentro de la tarjeta -->
+    <ion-button fill="clear" (click)="setOpenUpdate(true, user)">Update</ion-button>
+    <ion-button fill="clear" (click)="deleteUser(user.id)">Delete</ion-button>
+  </ion-card>
+
+  <ion-button expand="block" (click)="setOpenCreate(true)">Registrar Usuario</ion-button>
+  <!--******** Modal para registrar usuario ********-->
+  <ion-modal [isOpen]="isModalOpenCreate">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Registrar Usuario</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpenCreate(false)">Back</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <!-- Aquí comienzo a escribir mi formulario -->
+        <form [formGroup]="userForm" (ngSubmit)="createUser()">
+          <ion-item>
+            <ion-label position="floating">identification</ion-label>
+            <ion-input formControlName="identification" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('identification')?.hasError('required') && getFormControl('identification')?.touched">
+            El identification es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('name')?.hasError('required') && getFormControl('name')?.touched">
+            El name es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Primer Apellido</ion-label>
+            <ion-input formControlName="surname1" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('surname1')?.hasError('required') && getFormControl('surname1')?.touched">
+            El apellido 1 es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Segundo Apellido</ion-label>
+            <ion-input formControlName="surname2" type="text"></ion-input>
+          </ion-item> <!-- Este campo puede quedar vacío -->
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('email')?.hasError('required') && getFormControl('email')?.touched">
+            El email es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input formControlName="phone" type="text"></ion-input>
+          </ion-item> <!-- Este campo puede quedar vacío -->
+
+          <ion-item>
+            <ion-label position="floating">Dirección</ion-label>
+            <ion-input formControlName="address" type="text"></ion-input>
+          </ion-item> <!-- Este campo puede quedar vacío -->
+
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="password" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('password')?.hasError('required') && getFormControl('password')?.touched">
+            La Contraseña es obligatorio!
+          </ion-note>
+
+          <!-- Botón de Enviar -->
+          <ion-button expand="full" type="submit" [disabled]="!userForm.valid">Crear Usuario</ion-button>
+        </form>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!--******** Modal para actualizar usuario ********-->
+  <ion-modal [isOpen]="isModalOpenUpdate">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Actualizar Usuario</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpenUpdate(false)">Back</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <!-- Aquí comienzo a escribir mi formulario -->
+        <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+          <ion-item>
+            <ion-label position="floating">identification</ion-label>
+            <ion-input formControlName="identification" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('identification')?.hasError('required') && getFormControl('identification')?.touched">
+            El identification es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('name')?.hasError('required') && getFormControl('name')?.touched">
+            El name es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Primer Apellido</ion-label>
+            <ion-input formControlName="surname1" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('surname1')?.hasError('required') && getFormControl('surname1')?.touched">
+            El apellido 1 es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Segundo Apellido</ion-label>
+            <ion-input formControlName="surname2" type="text"></ion-input>
+          </ion-item> <!-- Este campo puede quedar vacío -->
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('email')?.hasError('required') && getFormControl('email')?.touched">
+            El email es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input formControlName="phone" type="text"></ion-input>
+          </ion-item> <!-- Este campo puede quedar vacío -->
+
+          <ion-item>
+            <ion-label position="floating">Dirección</ion-label>
+            <ion-input formControlName="address" type="text"></ion-input>
+          </ion-item> <!-- Este campo puede quedar vacío -->
+
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="password" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('password')?.hasError('required') && getFormControl('password')?.touched">
+            La Contraseña es obligatorio!
+          </ion-note>
+
+          <!-- Botón de Enviar -->
+          <ion-button expand="full" type="submit" [disabled]="!userForm.valid">Actualizar Usuario</ion-button>
+        </form>
+
+      </ion-content>
+    </ng-template>
+    
+    
+
+  </ion-modal>
+
+
+</ion-content>
