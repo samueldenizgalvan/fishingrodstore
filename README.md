@@ -73,7 +73,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto localmente:
 9. **Instalar las dependencias del frontend**:
    Ejecuta el siguiente comando para instalar las dependencias del frontend:
    ```bash
-   npm install
+   npm install -g @ionic/cli
    ```
 
 10. **Ejecutar el frontend**:
