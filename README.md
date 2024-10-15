@@ -123,9 +123,9 @@ Actualmente, no hay una Wiki disponible para este proyecto.
 
 Este proyecto no sigue un sistema de versionado formal, ya que está en fase de desarrollo académico.
 
-## Autores ✒️
+## Autor ✒️
 
-* **[Gabriel Alexander Osorio Osorio]** - *Desarrollador* - [TuGitHub](https://github.com/tuusuario)
+* **[Gabriel Alexander Osorio Osorio]** - *Desarrollador* - [Visita mi GitHub](https://github.com/gabrielalexandro/)
 
 ## Licencia 📄
 
