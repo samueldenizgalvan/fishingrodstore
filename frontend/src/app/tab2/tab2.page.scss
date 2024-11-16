@@ -1,0 +1,16 @@
+.picker-content {
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+ion-picker {
+    width: 100%;
+    max-width: 300%;
+    margin: auto;
+}

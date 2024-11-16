@@ -1,0 +1,205 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Perfiles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+  <div *ngIf="!isLoggedIn">
+    <h1 class="title">Iniciar Sesión</h1>
+
+    <!-- Tarjeta con el formulario de login -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Acceso</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email" type="email"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+              *ngIf="getFormControl('email')?.hasError('required') && getFormControl('email')?.touched">
+              El email es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="password" [type]="passwordType"></ion-input>
+            <ion-icon name="eye" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+          </ion-item>
+          <ion-note color="danger"
+              *ngIf="getFormControl('password')?.hasError('required') && getFormControl('password')?.touched">
+              La Contraseña es obligatorio!
+            </ion-note>
+
+          <ion-button expand="full" type="submit" [disabled]="!loginForm.valid">Acceder</ion-button>
+        </form>
+      </ion-card-content>
+
+      <!-- Botón para abrir el modal de registro -->
+      <ion-button expand="block" fill="clear" (click)="setOpenRegister(true)">Registrar Usuario</ion-button>
+    </ion-card>
+  </div>
+
+  <!-- Tarjeta para mostrar datos del usuario cuando está logeado -->
+  <div *ngIf="isLoggedIn">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Perfil del Usuario</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content *ngIf="!isLoading; else loadingTemplate">
+        <!-- Sección del Avatar -->
+        <ion-item lines="none" class="avatar-container">
+          <ion-avatar slot="start">
+            <img [src]="userData?.filename ? 'http://localhost:8080/images/' + userData.filename : 'assets/img/default-avatar.png'" alt="Avatar de usuario" />
+          </ion-avatar>
+          <ion-button slot="end" (click)="changePhoto()">Cambiar Foto</ion-button>
+        </ion-item>
+
+        
+  
+        <!-- Datos del Usuario -->
+        <ion-item>
+          <ion-label>Identificación:</ion-label>
+          <span>{{ userData?.identification }}</span>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Nombre Completo:</ion-label>
+          <span>{{ userData?.name }} {{ userData?.surname1 }} {{ userData?.surname2 }}</span>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Email:</ion-label>
+          <span>{{ userData?.email }}</span>
+        </ion-item>
+  
+        <ion-item *ngIf="userData?.phone">
+          <ion-label>Teléfono:</ion-label>
+          <span>{{ userData?.phone }}</span>
+        </ion-item>
+  
+        <ion-item *ngIf="userData?.address">
+          <ion-label>Dirección:</ion-label>
+          <span>{{ userData?.address }}</span>
+        </ion-item>
+  
+        <!-- Botón de Cerrar Sesión -->
+        <ion-button expand="full" color="danger" (click)="logout()">Cerrar Sesión</ion-button>
+        <br/><br/><br/>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button (click)="changePhoto()">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+      </ion-card-content>
+  
+      <ng-template #loadingTemplate>
+        <ion-skeleton-text animated style="width: 100%; height: 15px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 80%; height: 15px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 80%; height: 15px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 80%; height: 15px;"></ion-skeleton-text>
+        <!-- Más skeletons si se requieren -->
+      </ng-template>
+    </ion-card>
+
+    
+
+  </div>
+
+</ion-content>
+
+<!-- Modal para registrar usuario -->
+<ion-modal [isOpen]="isModalOpenRegister">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Registrar Usuario</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setOpenRegister(false)">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <form [formGroup]="userForm" (ngSubmit)="register()">
+        <ion-item>
+          <ion-label position="floating">Identificación</ion-label>
+          <ion-input formControlName="identification" type="text"></ion-input>
+        </ion-item>
+        <ion-note color="danger"
+            *ngIf="getFormControl('identification')?.hasError('required') && getFormControl('identification')?.touched">
+            El identification es obligatorio!
+          </ion-note>
+
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
+        <ion-note color="danger"
+            *ngIf="getFormControl('name')?.hasError('required') && getFormControl('name')?.touched">
+            El name es obligatorio!
+          </ion-note>
+
+        <ion-item>
+          <ion-label position="floating">Primer Apellido</ion-label>
+          <ion-input formControlName="surname1" type="text"></ion-input>
+        </ion-item>
+        <ion-note color="danger"
+            *ngIf="getFormControl('surname1')?.hasError('required') && getFormControl('surname1')?.touched">
+            El apellido 1 es obligatorio!
+          </ion-note>
+
+        <ion-item>
+          <ion-label position="floating">Segundo Apellido</ion-label>
+          <ion-input formControlName="surname2" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Sexo</ion-label>
+          <ion-select formControlName="sexo" interface="popover">
+            <ion-select-option value="Hombre">Hombre</ion-select-option>
+            <ion-select-option value="Mujer">Mujer</ion-select-option>
+            <ion-select-option value="Otro">Otro</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-note color="danger"
+            *ngIf="getFormControl('email')?.hasError('required') && getFormControl('email')?.touched">
+            El email es obligatorio!
+          </ion-note>
+
+        <ion-item>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input formControlName="phone" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Dirección</ion-label>
+          <ion-input formControlName="address" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="password" [type]="passwordType"></ion-input>
+          <ion-icon name="eye" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+        </ion-item>
+        <ion-note color="danger"
+            *ngIf="getFormControl('password')?.hasError('required') && getFormControl('password')?.touched">
+            La Contraseña es obligatorio!
+          </ion-note>
+
+        <ion-button expand="full" type="submit" [disabled]="!userForm.valid">Registrar Usuario</ion-button>
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

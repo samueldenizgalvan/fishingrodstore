@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="title">Basket</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- Si no hay nada en el carrito muestro el mensaje -->
+  <div *ngIf="emptyBag" class="empty-cart">
+    <img src="assets/img/empty-bag.png" alt="Carrito vacío" class="empty-cart-image" />
+    <p>{{ emptyCartMessage }}</p>
+  </div>
+
+  <!-- Si hay productos en el carrito los muestro en tarjetas -->
+  <div *ngIf="products && products.length > 0">
+
+    <!-- Mostrando los productos del carrito en tarjetas -->
+    <ion-card *ngFor="let product of products; let i = index">
+      <ng-container *ngIf="isLoading; else loaded">
+        <ion-card-header>
+          <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-skeleton-text animated style="width: 100%; height: 15px;"></ion-skeleton-text>
+        </ion-card-content>
+      </ng-container>
+
+      <ng-template #loaded>
+        <ion-card-header>
+          <ion-card-title>Producto {{ i + 1 }}</ion-card-title>
+          <ion-card-subtitle>Cantidad en carrito: {{ product.quantity }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-item>
+          <!-- Botón para eliminar productos específicos -->
+          <ion-button fill="outline" (click)="removeProduct(product.product_id)">Eliminar Producto</ion-button>
+        </ion-item>
+      </ng-template>
+    </ion-card>
+
+    <!-- Botón para vaciar todo el carrito -->
+    <ion-button expand="full" fill="solid" color="danger" (click)="clearCart()">Eliminar Todo</ion-button>
+
+  </div>
+
+</ion-content>

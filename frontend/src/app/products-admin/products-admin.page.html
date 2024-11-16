@@ -1,0 +1,214 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-button (click)="goToHome()">Back</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1 class="title">Página de Administración de Productos</h1>
+
+  <!--******** Comienza el Contenido de la tarjeta ********-->
+  <ion-card *ngFor="let product of products; let i = index">
+    <ng-container *ngIf="isLoading; else loaded">
+      <ion-card-header>
+        <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 50%; height: 15px;"></ion-skeleton-text>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <ion-skeleton-text animated style="width: 100%; height: 15px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 100%; height: 15px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 100%; height: 200px;"></ion-skeleton-text>
+      </ion-card-content>
+  
+    </ng-container>
+    <ng-template #loaded>
+      <ion-card-header>
+        <ion-card-title>{{ product.brand }} - {{ product.code }}</ion-card-title>
+        <ion-card-subtitle>Precio: {{ product.price }} USD</ion-card-subtitle>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <ion-text color="tertiary"><p>Categoría: {{ product.category }}</p></ion-text>
+        <ion-text><p>Color: {{ product.color }}</p></ion-text>
+        <img *ngIf="product.photo_url" [src]="product.photo_url" alt="{{ product.brand }} Image" style="width: 100%; max-height: 200px; object-fit: cover;">
+      </ion-card-content>
+  
+      <!-- Botones de acción dentro de la tarjeta -->
+      <ion-button fill="clear" (click)="setOpenUpdate(true, product)">Actualizar</ion-button>
+      <ion-button fill="clear" (click)="deleteProduct(product.id)">Eliminar</ion-button>
+    </ng-template>
+  </ion-card>
+  
+
+  <ion-button expand="block" (click)="setOpenCreate(true)">Registrar Producto</ion-button>
+
+  <!--******** Modal para registrar producto ********-->
+  <ion-modal [isOpen]="isModalOpenCreate">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Registrar Producto</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpenCreate(false)">Back</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <!-- Aquí comienzo a escribir mi formulario -->
+        <form [formGroup]="productForm" (ngSubmit)="createProduct()">
+          <ion-item>
+            <ion-label position="floating">Precio</ion-label>
+            <ion-input formControlName="price" type="number"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('price')?.hasError('required') && getFormControl('price')?.touched">
+            El precio es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Código</ion-label>
+            <ion-input formControlName="code" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('code')?.hasError('required') && getFormControl('code')?.touched">
+            El código es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Marca</ion-label>
+            <ion-input formControlName="brand" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('brand')?.hasError('required') && getFormControl('brand')?.touched">
+            La marca es obligatoria!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">URL de Foto</ion-label>
+            <ion-input formControlName="photo_url" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Color</ion-label>
+            <ion-input formControlName="color" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Categoría</ion-label>
+          </ion-item>
+          <ion-list>
+            <ion-radio-group formControlName="category">
+              <ion-item>
+                <ion-label>Automatic Knife</ion-label>
+                <ion-radio slot="start" value="Automatic Knife"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Assisted Knife</ion-label>
+                <ion-radio slot="start" value="Assisted Knife"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Fixed Blade Knife</ion-label>
+                <ion-radio slot="start" value="Fixed Blade Knife"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+          <ion-note color="danger"
+            *ngIf="getFormControl('category')?.hasError('required') && getFormControl('category')?.touched">
+            La categoría es obligatoria!
+          </ion-note>
+
+          <!-- Botón de Enviar -->
+          <ion-button expand="full" type="submit" [disabled]="!productForm.valid">Crear Producto</ion-button>
+        </form>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!--******** Modal para actualizar producto ********-->
+  <ion-modal [isOpen]="isModalOpenUpdate">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Actualizar Producto</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpenUpdate(false)">Back</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <!-- Aquí comienzo a escribir mi formulario -->
+        <form [formGroup]="productForm" (ngSubmit)="updateProduct()">
+          <ion-item>
+            <ion-label position="floating">Precio</ion-label>
+            <ion-input formControlName="price" type="number"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('price')?.hasError('required') && getFormControl('price')?.touched">
+            El precio es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Código</ion-label>
+            <ion-input formControlName="code" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('code')?.hasError('required') && getFormControl('code')?.touched">
+            El código es obligatorio!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">Marca</ion-label>
+            <ion-input formControlName="brand" type="text"></ion-input>
+          </ion-item>
+          <ion-note color="danger"
+            *ngIf="getFormControl('brand')?.hasError('required') && getFormControl('brand')?.touched">
+            La marca es obligatoria!
+          </ion-note>
+
+          <ion-item>
+            <ion-label position="floating">URL de Foto</ion-label>
+            <ion-input formControlName="photo_url" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Color</ion-label>
+            <ion-input formControlName="color" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Categoría</ion-label>
+          </ion-item>
+          <ion-list>
+            <ion-radio-group formControlName="category">
+              <ion-item>
+                <ion-label>Automatic Knife</ion-label>
+                <ion-radio slot="start" value="Automatic Knife"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Assisted Knife</ion-label>
+                <ion-radio slot="start" value="Assisted Knife"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Fixed Blade Knife</ion-label>
+                <ion-radio slot="start" value="Fixed Blade Knife"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+          <ion-note color="danger"
+            *ngIf="getFormControl('category')?.hasError('required') && getFormControl('category')?.touched">
+            La categoría es obligatoria!
+          </ion-note>
+
+          <!-- Botón de Enviar -->
+          <ion-button expand="full" type="submit" [disabled]="!productForm.valid">Actualizar Producto</ion-button>
+        </form>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

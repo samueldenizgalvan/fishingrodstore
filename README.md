@@ -3,9 +3,7 @@
 
 Knives_Store es una tienda online especializada en la venta de navajas, cuchillos y equipos relacionados con actividades al aire libre como camping, montañismo y supervivencia en exteriores. A través de esta aplicación, los usuarios tendrán acceso al catálogo de productos ofrecidos por la tienda, además de la posibilidad de registrarse, crear una cuenta personal y realizar compras en línea.
 
-Actualmente, el proyecto está en fase de prueba, y solo se encuentra disponible un CRUD básico para la gestión de perfiles de usuario, desarrollado con una API REST utilizando **Express**, **Sequelize**, y **MySQL**. Los endpoints disponibles permiten realizar operaciones **GET**, **POST**, **PUT**, y **DELETE**. Para la interfaz de usuario (frontend), se ha utilizado **Ionic** y **Angular**.
-
-> **Nota:** Solo el botón de **Perfiles** está completamente funcional en esta fase del proyecto.
+Actualmente, el proyecto está en fase de prueba, desarrollado con una API REST utilizando **Express**, **Sequelize**, y **MySQL**. Los endpoints disponibles permiten realizar operaciones **GET**, **POST**, **PUT**, y **DELETE**. Para la interfaz de usuario (frontend), se ha utilizado **Ionic** y **Angular**.
 
 ## Comenzando 🚀
 
@@ -49,6 +47,22 @@ Sigue estos pasos para instalar y ejecutar el proyecto localmente:
    ```bash
    npm install
    ```
+   **Necesitas un archivo backend/.env con una clave para el JWT y los datos para la conexión a tu servidor**:
+   ```bash
+   JWT_SECRET=TuContraseñaSecretaYSuperPoderosa
+
+   MYSQL_DATABASE=db_knives_store
+   MYSQL_USER=root
+   MYSQL_PASSWORD=TuCredencial
+   MYSQL_ROOT_PASSWORD=TuCredencial
+
+   DB_HOST=localhost
+   NODE_ENV=development
+   ```
+   **Recordar instalar la librería necesaria para que puedan funcionar tus variables de entorno**
+   ```bash
+   npm install dotenv
+   ```
 
 6. **Ejecutar el backend**:
    Una vez instaladas las dependencias, ejecuta el servidor con el siguiente comando:
@@ -73,7 +87,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto localmente:
 9. **Instalar las dependencias del frontend**:
    Ejecuta el siguiente comando para instalar las dependencias del frontend:
    ```bash
-   npm install
+   npm install -g @ionic/cli
    ```
 
 10. **Ejecutar el frontend**:
@@ -84,11 +98,27 @@ Sigue estos pasos para instalar y ejecutar el proyecto localmente:
 
    Ahora, la aplicación estará disponible y podrás interactuar con ella desde el frontend.
 
-> **Importante**: Para que la aplicación funcione correctamente, asegúrate de que tanto el backend como el frontend estén ejecutándose de manera simultánea. También recordar que la base de datos debe estar correctamente creada en nuestro gestor de base de datos, para esto solo debemos ejecutar el contenido del fichero db_knives_store.sql
+> **Importante**: Para que la aplicación funcione correctamente, asegúrate de que tanto el backend como el frontend estén ejecutándose de manera simultánea. También recordar que la base de datos debe estar correctamente creada en nuestro gestor de base de datos, para esto podemos importarla desde el archivo **db_knives_store.sql** incluido en este proyecto.
+
+> **Super Importante**: Para trabajar con un usuario admin debemos crearlo, para ello podemos hacer uso de **POSTMAN** y ejecutamos el endpoint:
+   ```bash
+   http://localhost:8080/api/users/register
+   ```
+Pasamos el siguiente usuario admin:
+ ```bash
+   {
+    "identification": "ADMIN001",
+    "name": "Gabriel Alexander",
+    "surname1": "Osorio",
+    "email": "admin@example.com",
+    "password": "12345678",
+    "isAdmin": true
+   }
+ ```
 
 ## Acceso a los Endpoints via Postman 🔗
 Puedes acceder a los endpoints de la API a través de Postman utilizando el siguiente enlace:
-[Enlace a la colección de Postman](https://documenter.getpostman.com/view/35356237/2sAXxS6W7A)
+[Enlace a la colección de Postman](https://documenter.getpostman.com/view/35356237/2sAYBPkZr7)
 
 ## Ejecutando las pruebas ⚙️
 
@@ -123,9 +153,9 @@ Actualmente, no hay una Wiki disponible para este proyecto.
 
 Este proyecto no sigue un sistema de versionado formal, ya que está en fase de desarrollo académico.
 
-## Autores ✒️
+## Autor ✒️
 
-* **[Gabriel Alexander Osorio Osorio]** - *Desarrollador* - [TuGitHub](https://github.com/tuusuario)
+* **[Gabriel Alexander Osorio Osorio]** - *Desarrollador* - [Visita mi GitHub](https://github.com/gabrielalexandro/)
 
 ## Licencia 📄
 

@@ -1,12 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
     const User = sequelize.define("users", {
         identification: {
-            type: Sequelize.STRING(20), // Longitud máxima basada en tu tabla MySQL
+            type: Sequelize.STRING(20),
             allowNull: false,
             unique: true,
             validate: {
-                notEmpty: true, // No permitir que esté vacío
-                len: [5, 20]    // Longitud mínima y máxima
+                notEmpty: true,
+                len: [5, 20]
             }
         },
         name: {
@@ -30,9 +30,9 @@ module.exports = (sequelize, Sequelize) => {
         email: {
             type: Sequelize.STRING(50),
             allowNull: false,
-            unique: true, // Asegura que el email sea único
+            unique: true,
             validate: {
-                isEmail: true,  // Verificar que sea un email válido
+                isEmail: true,
                 notEmpty: true
             }
         },
@@ -49,10 +49,25 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             validate: {
                 notEmpty: true,
-                len: [8, 200]  // Asegurar una longitud mínima de 8 caracteres para la contraseña
+                len: [8, 200]
             }
+        },
+        sexo: {
+            type: Sequelize.STRING(8),
+            allowNull: true
+        },
+        // Nuevo campo creado para alojar el nombre de nuestra imagen //2
+        filename: {
+            type: Sequelize.STRING(50),
+            allowNull: true
+        },
+        active: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
         }
     }, {
+        timestamps: true,  // Añade createdAt y updatedAt automáticamente
         tableName: 'users'
     });
 
