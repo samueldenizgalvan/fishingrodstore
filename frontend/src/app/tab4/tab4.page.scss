@@ -1,0 +1,23 @@
+ion-card {
+    --background: #4FC3F7; /* Color celeste */
+    --color: #FFFFFF;      /* Color del texto dentro de la tarjeta */
+    border-radius: 12px;   /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  }
+  
+  ion-card-title {
+    color: #FFFFFF; /* Texto blanco */
+    font-weight: bold;
+  }
+  
+  ion-item {
+    --background: transparent; /* Fondo transparente dentro de la tarjeta */
+    color: #000000; /* Color del texto */
+    border-bottom: 1px solid #90CAF9; /* Línea sutil de división */
+  }
+  
+  ion-button {
+    --background: #0288D1; /* Botón azul oscuro */
+    --color: #FFFFFF; /* Texto blanco */
+  }
+  

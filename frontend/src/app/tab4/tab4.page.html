@@ -21,7 +21,7 @@
             <ion-label position="floating">Email</ion-label>
             <ion-input formControlName="email" type="email"></ion-input>
           </ion-item>
-          <ion-note color="danger"
+          <ion-note color="dark"
               *ngIf="getFormControl('email')?.hasError('required') && getFormControl('email')?.touched">
               El email es obligatorio!
           </ion-note>
@@ -31,7 +31,7 @@
             <ion-input formControlName="password" [type]="passwordType"></ion-input>
             <ion-icon name="eye" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
           </ion-item>
-          <ion-note color="danger"
+          <ion-note color="dark"
               *ngIf="getFormControl('password')?.hasError('required') && getFormControl('password')?.touched">
               La Contraseña es obligatorio!
             </ion-note>
@@ -90,7 +90,7 @@
         </ion-item>
   
         <!-- Botón de Cerrar Sesión -->
-        <ion-button expand="full" color="danger" (click)="logout()">Cerrar Sesión</ion-button>
+        <ion-button expand="full" color="dark" (click)="logout()">Cerrar Sesión</ion-button>
         <br/><br/><br/>
         <ion-fab vertical="bottom" horizontal="end" slot="fixed">
           <ion-fab-button (click)="changePhoto()">
@@ -132,7 +132,7 @@
           <ion-label position="floating">Identificación</ion-label>
           <ion-input formControlName="identification" type="text"></ion-input>
         </ion-item>
-        <ion-note color="danger"
+        <ion-note color="dark"
             *ngIf="getFormControl('identification')?.hasError('required') && getFormControl('identification')?.touched">
             El identification es obligatorio!
           </ion-note>
@@ -141,7 +141,7 @@
           <ion-label position="floating">Nombre</ion-label>
           <ion-input formControlName="name" type="text"></ion-input>
         </ion-item>
-        <ion-note color="danger"
+        <ion-note color="dark"
             *ngIf="getFormControl('name')?.hasError('required') && getFormControl('name')?.touched">
             El name es obligatorio!
           </ion-note>
@@ -150,7 +150,7 @@
           <ion-label position="floating">Primer Apellido</ion-label>
           <ion-input formControlName="surname1" type="text"></ion-input>
         </ion-item>
-        <ion-note color="danger"
+        <ion-note color="dark"
             *ngIf="getFormControl('surname1')?.hasError('required') && getFormControl('surname1')?.touched">
             El apellido 1 es obligatorio!
           </ion-note>
@@ -173,7 +173,7 @@
           <ion-label position="floating">Email</ion-label>
           <ion-input formControlName="email" type="email"></ion-input>
         </ion-item>
-        <ion-note color="danger"
+        <ion-note color="dark"
             *ngIf="getFormControl('email')?.hasError('required') && getFormControl('email')?.touched">
             El email es obligatorio!
           </ion-note>
@@ -193,7 +193,7 @@
           <ion-input formControlName="password" [type]="passwordType"></ion-input>
           <ion-icon name="eye" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
         </ion-item>
-        <ion-note color="danger"
+        <ion-note color="dark"
             *ngIf="getFormControl('password')?.hasError('required') && getFormControl('password')?.touched">
             La Contraseña es obligatorio!
           </ion-note>

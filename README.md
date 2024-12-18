@@ -1,168 +1,95 @@
+fishing_Store
+fishing_Store es una tienda online especializada en la venta de cañas de pescar y equipos relacionados con actividades de pesca deportiva como rockfishing, surfcasting y pesca desde embarcación. A través de esta aplicación, los usuarios tendrán acceso al catálogo de productos ofrecidos por la tienda, además de la posibilidad de registrarse, crear una cuenta personal y realizar compras en línea.
 
-# Knives_Store
+Actualmente, el proyecto está en fase de prueba, desarrollado con una API REST utilizando Express, Sequelize y MySQL. Los endpoints disponibles permiten realizar operaciones GET, POST, PUT y DELETE. Para la interfaz de usuario (frontend), se ha utilizado Ionic y Angular.
 
-Knives_Store es una tienda online especializada en la venta de navajas, cuchillos y equipos relacionados con actividades al aire libre como camping, montañismo y supervivencia en exteriores. A través de esta aplicación, los usuarios tendrán acceso al catálogo de productos ofrecidos por la tienda, además de la posibilidad de registrarse, crear una cuenta personal y realizar compras en línea.
+Comenzando 🚀
+A continuación, se describen las instrucciones para obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas. Consulta la sección de Despliegue para conocer cómo desplegar el proyecto en un entorno de producción.
 
-Actualmente, el proyecto está en fase de prueba, desarrollado con una API REST utilizando **Express**, **Sequelize**, y **MySQL**. Los endpoints disponibles permiten realizar operaciones **GET**, **POST**, **PUT**, y **DELETE**. Para la interfaz de usuario (frontend), se ha utilizado **Ionic** y **Angular**.
-
-## Comenzando 🚀
-
-A continuación, se describen las instrucciones para obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas. Consulta la sección de **Despliegue** para conocer cómo desplegar el proyecto en un entorno de producción.
-
-### Pre-requisitos 📋
-
+Pre-requisitos 📋
 Asegúrate de tener instalados los siguientes programas:
 
-- **Git**: Para gestionar versiones y clonar el repositorio.
-- **Postman**: Para probar los endpoints de la API.
-- **Visual Studio Code**: Editor de código recomendado para trabajar con el proyecto.
-- **Node.js**: Para ejecutar JavaScript fuera del navegador y levantar el servidor con Express.
-- **MySQL Workbench**: (Opcional) Recomendado para visualizar la base de datos gráficamente.
-
-### Instalación 🔧
-
+Git: Para gestionar versiones y clonar el repositorio.
+Postman: Para probar los endpoints de la API.
+Visual Studio Code: Editor de código recomendado para trabajar con el proyecto.
+Node.js: Para ejecutar JavaScript fuera del navegador y levantar el servidor con Express.
+MySQL Workbench: (Opcional) Recomendado para visualizar la base de datos gráficamente.
+Instalación 🔧
 Sigue estos pasos para instalar y ejecutar el proyecto localmente:
 
-1. **Clonar el repositorio**: 
-   Abre la terminal y clona el repositorio en tu máquina local:
-   ```bash
-   git clone -b main https://github.com/gabrielalexandro/knives_store
-   ```
+Clonar el repositorio: Abre la terminal y clona el repositorio en tu máquina local:
 
-2. **Abrir el proyecto en Visual Studio Code**:
-   - Abre **Visual Studio Code**.
-   - Ve a `File > Open Folder...` y selecciona la carpeta donde clonaste el proyecto (por ejemplo, `C:/knives-store`).
+bash
+Copiar código
+git clone -b main https://github.com/samueldenizgalvan/fishing_store
+Abrir el proyecto en Visual Studio Code:
 
-3. **Abrir la terminal**:
-   Abre la terminal integrada de Visual Studio Code presionando `Ctrl + Ñ` o yendo a `Terminal > New Terminal`. Se recomienda usar **Git Bash**.
+Abre Visual Studio Code.
+Ve a File > Open Folder... y selecciona la carpeta donde clonaste el proyecto (por ejemplo, C:/fishing_store).
+Abrir la terminal: Abre la terminal integrada de Visual Studio Code presionando Ctrl + Ñ o yendo a Terminal > New Terminal. Se recomienda usar Git Bash.
 
-4. **Navegar al backend**:
-   Dentro de la carpeta raíz del proyecto, navega a la carpeta **Backend**:
-   ```bash
-   cd backend
-   ```
+Navegar al backend: Dentro de la carpeta raíz del proyecto, navega a la carpeta Backend:
 
-5. **Instalar las dependencias del backend**:
-   Ejecuta el siguiente comando para instalar las dependencias del backend:
-   ```bash
-   npm install
-   ```
-   **Necesitas un archivo backend/.env con una clave para el JWT y los datos para la conexión a tu servidor**:
-   ```bash
-   JWT_SECRET=TuContraseñaSecretaYSuperPoderosa
+bash
+Copiar código
+cd backend
+Instalar las dependencias del backend: Ejecuta el siguiente comando para instalar las dependencias del backend:
 
-   MYSQL_DATABASE=db_knives_store
-   MYSQL_USER=root
-   MYSQL_PASSWORD=TuCredencial
-   MYSQL_ROOT_PASSWORD=TuCredencial
+bash
+Copiar código
+npm install
+Necesitas un archivo backend/.env con una clave para el JWT y los datos de conexión:
 
-   DB_HOST=localhost
-   NODE_ENV=development
-   ```
-   **Recordar instalar la librería necesaria para que puedan funcionar tus variables de entorno**
-   ```bash
-   npm install dotenv
-   ```
+bash
+Copiar código
+JWT_SECRET=TuContraseña
 
-6. **Ejecutar el backend**:
-   Una vez instaladas las dependencias, ejecuta el servidor con el siguiente comando:
-   ```bash
-   node server.js
-   ```
+MYSQL_DATABASE=db_fishing_store
+MYSQL_USER=root
+MYSQL_PASSWORD=Tucontraseña
+DB_HOST=localhost
+NODE_ENV=development
+Ejecutar el backend: Una vez instaladas las dependencias, ejecuta el servidor con el siguiente comando:
 
-   El backend ya estará corriendo en tu máquina. Puedes probar los endpoints utilizando **Postman**.
+bash
+Copiar código
+node server.js
+Configurar el frontend: Vuelve a la carpeta raíz:
 
-7. **Configurar el frontend**:
-   Primero, vuelve a la carpeta raíz:
-   ```bash
-   cd ..
-   ```
+bash
+Copiar código
+cd ..
+Navegar al frontend: Dirígete a la carpeta Frontend:
 
-8. **Navegar al frontend**:
-   Dirígete a la carpeta **Frontend**:
-   ```bash
-   cd frontend
-   ```
+bash
+Copiar código
+cd frontend
+Instalar las dependencias del frontend: Ejecuta el siguiente comando:
 
-9. **Instalar las dependencias del frontend**:
-   Ejecuta el siguiente comando para instalar las dependencias del frontend:
-   ```bash
-   npm install -g @ionic/cli
-   ```
+bash
+Copiar código
+npm install -g @ionic/cli
+Ejecutar el frontend: Inicia el servidor del frontend con:
 
-10. **Ejecutar el frontend**:
-   Inicia el servidor del frontend con el siguiente comando:
-   ```bash
-   ionic serve
-   ```
+bash
+Copiar código
+ionic serve
+Importante: Asegúrate de que la base de datos esté correctamente configurada utilizando el archivo db_fishing_store.sql.
 
-   Ahora, la aplicación estará disponible y podrás interactuar con ella desde el frontend.
-
-> **Importante**: Para que la aplicación funcione correctamente, asegúrate de que tanto el backend como el frontend estén ejecutándose de manera simultánea. También recordar que la base de datos debe estar correctamente creada en nuestro gestor de base de datos, para esto podemos importarla desde el archivo **db_knives_store.sql** incluido en este proyecto.
-
-> **Super Importante**: Para trabajar con un usuario admin debemos crearlo, para ello podemos hacer uso de **POSTMAN** y ejecutamos el endpoint:
-   ```bash
-   http://localhost:8080/api/users/register
-   ```
-Pasamos el siguiente usuario admin:
- ```bash
-   {
-    "identification": "ADMIN001",
-    "name": "Gabriel Alexander",
-    "surname1": "Osorio",
-    "email": "admin@example.com",
-    "password": "12345678",
-    "isAdmin": true
-   }
- ```
-
-## Acceso a los Endpoints via Postman 🔗
+Acceso a los Endpoints via Postman 🔗
 Puedes acceder a los endpoints de la API a través de Postman utilizando el siguiente enlace:
-[Enlace a la colección de Postman](https://documenter.getpostman.com/view/35356237/2sAYBPkZr7)
+Enlace a la colección de Postman
 
-## Ejecutando las pruebas ⚙️
-
-En esta fase del proyecto no se han implementado pruebas automatizadas. Sin embargo, en futuras versiones se utilizará [Jest](https://jestjs.io/) para las pruebas unitarias.
-
-Para ejecutar las pruebas, cuando estén disponibles, se usará el siguiente comando:
-```bash
-npm test
-```
-
-## Despliegue 📦
-
-Este proyecto no está destinado para ser desplegado en producción en este momento, ya que está enfocado en la fase de pruebas y desarrollo.
-
-## Construido con 🛠️
-
-* [Ionic](https://ionicframework.com/) - Framework para el frontend
-* [Angular](https://angular.io/) - Plataforma para aplicaciones web
-* [Express](https://expressjs.com/) - Framework de Node.js para el backend
-* [Sequelize](https://sequelize.org/) - ORM para bases de datos MySQL
-* [MySQL](https://www.mysql.com/) - Sistema de gestión de bases de datos relacional
-
-## Contribuyendo 🖇️
-
-Este proyecto es una tarea de formación educativa, por lo que solo aceptará contribuciones del profesor.
-
-## Wiki 📖
-
-Actualmente, no hay una Wiki disponible para este proyecto.
-
-## Versionado 📌
-
-Este proyecto no sigue un sistema de versionado formal, ya que está en fase de desarrollo académico.
-
-## Autor ✒️
-
-* **[Gabriel Alexander Osorio Osorio]** - *Desarrollador* - [Visita mi GitHub](https://github.com/gabrielalexandro/)
-
-## Licencia 📄
-
-Este proyecto no tiene una licencia formal, ya que es parte de una tarea universitaria.
-
-## Expresiones de Gratitud 🎁
-
-* Agradecimientos a mi profesor por su constante apoyo y guía durante el desarrollo de este proyecto. Espero contar con su ayuda y compromiso en esta etapa final, ya que su dedicación es fundamental para que pueda culminar con éxito esta experiencia de aprendizaje. Confío en que responderá sabiamente a todas mis dudas e inquietudes, permitiéndome así adquirir las habilidades necesarias para enfrentar los próximos desafíos en este vasto y emocionante mundo de la informática.
-
-* Agradecimientos a mis compañeros de clase por su colaboración.
+Construido con 🛠️
+Ionic - Framework para el frontend
+Angular - Plataforma para aplicaciones web
+Express - Framework de Node.js para el backend
+Sequelize - ORM para bases de datos MySQL
+MySQL - Sistema de gestión de bases de datos relacional
+Autor ✒️
+Samuel Deniz Galvan - Desarrollador
+Visita mi GitHub
+Expresiones de Gratitud 🎁
+Agradecimientos a mi profesor por su guía durante el desarrollo de este proyecto.
+Reconocimiento a mis compañeros por su colaboración y apoyo en esta experiencia.
+Si necesitas algún ajuste adicional, házmelo saber. 😊

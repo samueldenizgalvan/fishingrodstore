@@ -41,3 +41,25 @@
 .title {
     text-align: center;
 }
+
+/* Color celeste para el encabezado */
+ion-toolbar {
+    --background: #4FC3F7; /* Celeste */
+    --color: #ffffff;      /* Texto blanco */
+  }
+  
+  /* Color celeste para el tab bar */
+  ion-tab-bar {
+    --background: #4FC3F7;      /* Celeste */
+    --color: #ffffff;           /* Color de los íconos y texto inactivo */
+    --color-selected: #0288D1;  /* Celeste más oscuro para el activo */
+  }
+  ion-content {
+    --background: #FFFFFF; /* Fondo blanco */
+  }
+  
+  
+  ion-tab-button {
+    font-size: 14px; /* Tamaño de la fuente */
+  }
+  

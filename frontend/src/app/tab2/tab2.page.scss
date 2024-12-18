@@ -14,3 +14,34 @@ ion-picker {
     max-width: 300%;
     margin: auto;
 }
+
+/* Cambiar color del título (Products y Basket) */
+ion-toolbar {
+  --color: #ffffff; /* Texto blanco */
+}
+
+.title {
+  color: #ffffff !important; /* Asegura que el color sea blanco */
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Estilos para los recuadros de los productos */
+ion-card {
+  --background: #f4f4f4; /* Color de fondo más claro */
+  --color: #000000;      /* Color del texto */
+  border-radius: 12px;   /* Bordes redondeados */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  margin: 10px 5px;      /* Espaciado entre tarjetas */
+}
+
+ion-card-header {
+  background: #e0e0e0; /* Fondo del encabezado más claro */
+  padding: 10px;
+  border-bottom: 1px solid #d3d3d3; /* Línea divisoria sutil */
+}
+
+ion-card-content {
+  background: #ffffff; /* Fondo blanco */
+  padding: 10px;
+}

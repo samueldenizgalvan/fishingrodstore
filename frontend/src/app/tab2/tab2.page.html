@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="title">Products</ion-title>
+    <ion-title class="title">Productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,13 +16,13 @@
 
   <ion-accordion-group>
     <ion-accordion value="first">
-      <ion-item slot="header" color="light">
+      <ion-item slot="header" color="dark">
         <ion-label>Filtrar por Categoría</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
-        <ion-button expand="full" (click)="filterByCategory('Automatic Knife')">Automatic Knife</ion-button>
-        <ion-button expand="full" (click)="filterByCategory('Assisted Knife')">Assisted Knife</ion-button>
-        <ion-button expand="full" (click)="filterByCategory('Fixed Blade Knife')">Fixed Blade Knife</ion-button>
+        <ion-button expand="full" (click)="filterByCategory('Cañas para Pesca Rockfishing')">Cañas para Pesca Rockfishing</ion-button>
+        <ion-button expand="full" (click)="filterByCategory('Cañas para Pesca Surfcasting')">Cañas para Pesca Surfcasting</ion-button>
+        <ion-button expand="full" (click)="filterByCategory('Cañas para Pesca Embarcación')">Cañas para Pesca Embarcación</ion-button>
       </div>
     </ion-accordion>
   </ion-accordion-group>
@@ -113,7 +113,7 @@
             <ion-label position="floating">Precio</ion-label>
             <ion-input formControlName="price" type="number"></ion-input>
           </ion-item>
-          <ion-note color="danger"
+          <ion-note color="dark"
             *ngIf="getFormControl('price')?.hasError('required') && getFormControl('price')?.touched">
             El precio es obligatorio!
           </ion-note>
@@ -122,7 +122,7 @@
             <ion-label position="floating">Código</ion-label>
             <ion-input formControlName="code" type="text"></ion-input>
           </ion-item>
-          <ion-note color="danger"
+          <ion-note color="dark"
             *ngIf="getFormControl('code')?.hasError('required') && getFormControl('code')?.touched">
             El código es obligatorio!
           </ion-note>
@@ -131,7 +131,7 @@
             <ion-label position="floating">Marca</ion-label>
             <ion-input formControlName="brand" type="text"></ion-input>
           </ion-item>
-          <ion-note color="danger"
+          <ion-note color="dark"
             *ngIf="getFormControl('brand')?.hasError('required') && getFormControl('brand')?.touched">
             La marca es obligatoria!
           </ion-note>
@@ -152,20 +152,20 @@
           <ion-list>
             <ion-radio-group formControlName="category">
               <ion-item>
-                <ion-label>Automatic Knife</ion-label>
-                <ion-radio slot="start" value="Automatic Knife"></ion-radio>
+                <ion-label>Cañas para Pesca Rockfishing</ion-label>
+                <ion-radio slot="start" value="Cañas para Pesca Rockfishing"></ion-radio>
               </ion-item>
               <ion-item>
-                <ion-label>Assisted Knife</ion-label>
-                <ion-radio slot="start" value="Assisted Knife"></ion-radio>
+                <ion-label>Cañas para Pesca Surfcasting</ion-label>
+                <ion-radio slot="start" value="Cañas para Pesca Surfcasting"></ion-radio>
               </ion-item>
               <ion-item>
-                <ion-label>Fixed Blade Knife</ion-label>
-                <ion-radio slot="start" value="Fixed Blade Knife"></ion-radio>
+                <ion-label>Cañas para Pesca Embarcación</ion-label>
+                <ion-radio slot="start" value="Cañas para Pesca Embarcación"></ion-radio>
               </ion-item>
             </ion-radio-group>
           </ion-list>
-          <ion-note color="danger"
+          <ion-note color="dark"
             *ngIf="getFormControl('category')?.hasError('required') && getFormControl('category')?.touched">
             La categoría es obligatoria!
           </ion-note>
@@ -197,7 +197,7 @@
             <ion-label position="floating">Precio</ion-label>
             <ion-input formControlName="price" type="number"></ion-input>
           </ion-item>
-          <ion-note color="danger"
+          <ion-note color="dark"
             *ngIf="getFormControl('price')?.hasError('required') && getFormControl('price')?.touched">
             El precio es obligatorio!
           </ion-note>
@@ -206,7 +206,7 @@
             <ion-label position="floating">Código</ion-label>
             <ion-input formControlName="code" type="text"></ion-input>
           </ion-item>
-          <ion-note color="danger"
+          <ion-note color="dark"
             *ngIf="getFormControl('code')?.hasError('required') && getFormControl('code')?.touched">
             El código es obligatorio!
           </ion-note>
@@ -215,7 +215,7 @@
             <ion-label position="floating">Marca</ion-label>
             <ion-input formControlName="brand" type="text"></ion-input>
           </ion-item>
-          <ion-note color="danger"
+          <ion-note color="dark"
             *ngIf="getFormControl('brand')?.hasError('required') && getFormControl('brand')?.touched">
             La marca es obligatoria!
           </ion-note>
@@ -236,20 +236,20 @@
           <ion-list>
             <ion-radio-group formControlName="category">
               <ion-item>
-                <ion-label>Automatic Knife</ion-label>
-                <ion-radio slot="start" value="Automatic Knife"></ion-radio>
+                <ion-label>Cañas para Pesca Rockfishing</ion-label>
+                <ion-radio slot="start" value="Cañas para Pesca Rockfishing"></ion-radio>
               </ion-item>
               <ion-item>
-                <ion-label>Assisted Knife</ion-label>
-                <ion-radio slot="start" value="Assisted Knife"></ion-radio>
+                <ion-label>Cañas para Pesca Surfcasting</ion-label>
+                <ion-radio slot="start" value="Cañas para Pesca Surfcasting"></ion-radio>
               </ion-item>
               <ion-item>
-                <ion-label>Fixed Blade Knife</ion-label>
-                <ion-radio slot="start" value="Fixed Blade Knife"></ion-radio>
+                <ion-label>Cañas para Pesca Embarcación</ion-label>
+                <ion-radio slot="start" value="Cañas para Pesca Embarcación"></ion-radio>
               </ion-item>
             </ion-radio-group>
           </ion-list>
-          <ion-note color="danger"
+          <ion-note color="dark"
             *ngIf="getFormControl('category')?.hasError('required') && getFormControl('category')?.touched">
             La categoría es obligatoria!
           </ion-note>
